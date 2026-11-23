@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jocki-app.github.io/saddle-website/schemas/index.schema.json",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": [
+      "chunks"
+    ],
+    "properties": {
+      "chunks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "offset",
+            "length",
+            "hash"
+          ],
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 144,
+              "maximum": 9007199254740991
+            },
+            "length": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        }
+      },
+      "heads": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "numChanges": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    }
+  }
+}

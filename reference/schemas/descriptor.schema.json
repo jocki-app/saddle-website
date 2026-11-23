@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jocki-app.github.io/saddle-website/schemas/descriptor.schema.json",
+  "type": "object",
+  "required": [
+    "format",
+    "id",
+    "kind",
+    "features"
+  ],
+  "properties": {
+    "format": {
+      "const": "saddle-companion/1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,128}$"
+    },
+    "kind": {
+      "enum": [
+        "file",
+        "folder"
+      ]
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "history": {
+          "type": "boolean"
+        },
+        "sync": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

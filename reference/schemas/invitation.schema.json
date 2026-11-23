@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jocki-app.github.io/saddle-website/schemas/invitation.schema.json",
+  "type": "object",
+  "required": [
+    "format",
+    "url",
+    "name",
+    "kind"
+  ],
+  "properties": {
+    "format": {
+      "const": "saddle-share-invitation/1"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^automerge:"
+    },
+    "name": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "file",
+        "folder",
+        "vault",
+        "workspace"
+      ]
+    }
+  }
+}
