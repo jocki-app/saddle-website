@@ -11,13 +11,17 @@ const escape = (s) =>
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+const href = (url) => {
+  if (/^[a-z][a-z\d+.-]*:/i.test(url)) return url;
+  return url.replace(/^\.\.\/(schemas|conformance)\//, "$1/").replace(/\.md(?=#|$)/, ".html");
+};
 const inline = (s) =>
   escape(s)
     .replace(/`([^`]+)`/g, "<code>$1</code>")
     .replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
       (_m, t, u) =>
-        `<a href="${u.endsWith(".md") ? u.slice(0, -3) + ".html" : u}">${t}</a>`,
+        `<a href="${href(u)}">${t}</a>`,
     )
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 function markdown(source) {
@@ -100,6 +104,8 @@ for (const file of files) {
   await writeFile("dist/" + file.replace(".md", ".html"), page);
 }
 await cp("reference/schemas", "dist/schemas", { recursive: true });
+await cp("reference/conformance", "dist/conformance", { recursive: true });
+await cp("reference/source.json", "dist/specification-source.json");
 await writeFile("dist/search.json", JSON.stringify(rows));
 const implementations =
   '<main id="main" class="wrap section"><p class="eyebrow">One wire format, multiple tools</p><h1>Choose your starting point.</h1><div class="cards">' +
@@ -122,7 +128,7 @@ const implementations =
   ]
     .map(
       ([name, repo, description]) =>
-        `<article class="card"><h3>${name}</h3><p>${description}</p><a href="https://github.com/jocki-app/${repo}">Open repository →</a></article>`,
+        `<article class="card"><h3>${name}</h3><p>${description}</p><a href="https://github.com/jocki-app/${repo}">Repository</a> · <a href="https://github.com/jocki-app/${repo}/releases">Downloads</a></article>`,
     )
     .join("") +
   "</div><h2>Start with an ordinary file</h2><pre><code>saddle inspect notes.md\nsaddle history enable notes.md\nsaddle history list notes.md</code></pre></main>";

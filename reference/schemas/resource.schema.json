@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jocki-app.github.io/saddle-website/schemas/resource.schema.json",
+  "title": "SADDLE Resource core",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "oneOf": [
+    {
+      "required": [
+        "path"
+      ],
+      "not": {
+        "required": [
+          "data"
+        ]
+      }
+    },
+    {
+      "required": [
+        "data"
+      ],
+      "not": {
+        "required": [
+          "path"
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "path": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "data": {
+      "type": [
+        "string",
+        "array",
+        "object"
+      ]
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "saddle": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string",
+          "pattern": "\\S"
+        }
+      },
+      "additionalProperties": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "mediatype": {
+      "type": "string"
+    },
+    "encoding": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

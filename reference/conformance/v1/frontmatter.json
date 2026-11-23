@@ -1,0 +1,45 @@
+{
+  "profile": "saddle-frontmatter/1",
+  "cases": [
+    {
+      "name": "core-scalars",
+      "source": "---\nnumber: 012\noctal: 0o12\nhex: 0x12\nexponent: 1e3\nbinary: 0b11\nclock: 1:20\nseparated: 1_000\nflag: true\nword: yes\ndate: 2026-11-22\n---\nText",
+      "properties": {
+        "number": 12,
+        "octal": 10,
+        "hex": 18,
+        "exponent": 1000,
+        "binary": "0b11",
+        "clock": "1:20",
+        "separated": "1_000",
+        "flag": true,
+        "word": "yes",
+        "date": "2026-11-22"
+      }
+    },
+    {
+      "name": "bom-crlf",
+      "source": "\ufeff---\r\ntopic: work\r\n---\r\nNote",
+      "properties": {
+        "topic": "work"
+      }
+    },
+    {
+      "name": "duplicate-yaml-key",
+      "source": "---\na: 1\na: 2\n---\nNote",
+      "invalid": true
+    },
+    {
+      "name": "inline-sidecar-conflict",
+      "source": "---\nmetadata:\n  topic: home\n---\nNote",
+      "descriptor": {
+        "name": "note",
+        "path": "note.md",
+        "metadata": {
+          "topic": "work"
+        }
+      },
+      "invalid": true
+    }
+  ]
+}

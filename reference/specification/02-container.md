@@ -28,7 +28,7 @@ The index is an object mapping portable record names to entries:
 {"resource.json":{"chunks":[{"offset":144,"length":32,"hash":"64-lowercase-hexadecimal-characters"}]}}
 ```
 
-Record names are relative POSIX paths. Empty components, `.`, `..`, backslashes, absolute paths, control characters, colons and the reserved `.saddle` component are forbidden. Each chunk offset is at least 144, length is nonnegative, its end precedes or equals the selected index offset, and `hash` is the full lowercase hexadecimal SHA-256 of its bytes. Reading a record concatenates its chunks in listed order and verifies every chunk. An empty payload is distinct from a missing record.
+Record names are relative POSIX paths. Empty components, `.`, `..`, backslashes, absolute paths, ASCII control characters (0x00–0x1f and 0x7f), colons and the reserved `.saddle` component are forbidden. Each chunk offset is at least 144, length is nonnegative, its end precedes or equals the selected index offset, and `hash` is the full lowercase hexadecimal SHA-256 of its bytes. Reading a record concatenates its chunks in listed order and verifies every chunk. An empty payload is distinct from a missing record.
 
 An entry MAY include `heads` (an array of Automerge head strings) and `numChanges` (a safe nonnegative integer). These statistics are committed atomically with the payload, allowing version-count displays without decoding an entire document. Readers MUST preserve unknown records when modifying another record.
 

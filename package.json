@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test test/*.test.mjs",
-    "preview": "python3 -m http.server --directory dist 8081"
+    "preview": "python3 -m http.server --directory dist 8081",
+    "spec:update": "node scripts/spec-update.mjs"
   }
 }

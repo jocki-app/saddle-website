@@ -1,0 +1,192 @@
+{
+  "profile": "saddle-resource/1",
+  "cases": [
+    {
+      "name": "valid-0",
+      "value": {
+        "name": "note",
+        "path": "notes.md"
+      },
+      "valid": true
+    },
+    {
+      "name": "valid-1",
+      "value": {
+        "name": "files",
+        "path": [
+          "a.csv",
+          "b.csv"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "name": "valid-2",
+      "value": {
+        "name": "remote",
+        "path": "https://example.org/data.json"
+      },
+      "valid": true
+    },
+    {
+      "name": "valid-3",
+      "value": {
+        "name": "json",
+        "data": {
+          "rows": []
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "valid-4",
+      "value": {
+        "name": "text",
+        "data": "hello",
+        "format": "txt"
+      },
+      "valid": true
+    },
+    {
+      "name": "valid-5",
+      "value": {
+        "name": "note",
+        "path": "./notes.md",
+        "metadata": {
+          "tags": [
+            "work"
+          ]
+        },
+        "saddle": {
+          "contentType": "example.note"
+        },
+        "vendor": {
+          "revision": 2
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "invalid-0",
+      "value": {
+        "path": "note.md"
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-1",
+      "value": {
+        "name": " ",
+        "path": "a"
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-2",
+      "value": {
+        "name": "x"
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-3",
+      "value": {
+        "name": "x",
+        "path": "a",
+        "data": []
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-4",
+      "value": {
+        "name": "x",
+        "path": "../a"
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-5",
+      "value": {
+        "name": "x",
+        "path": "/a"
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-6",
+      "value": {
+        "name": "x",
+        "path": []
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-7",
+      "value": {
+        "name": "x",
+        "path": [
+          "a",
+          "https://example.org/a"
+        ]
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-8",
+      "value": {
+        "name": "x",
+        "path": "file:///etc/passwd"
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-9",
+      "value": {
+        "name": "x",
+        "data": "text"
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-10",
+      "value": {
+        "name": "x",
+        "path": "a",
+        "title": 12
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-11",
+      "value": {
+        "name": "x",
+        "path": "a",
+        "metadata": []
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-12",
+      "value": {
+        "name": "x",
+        "path": "a",
+        "saddle": {
+          "contentType": ""
+        }
+      },
+      "valid": false
+    },
+    {
+      "name": "invalid-13",
+      "value": {
+        "name": "x",
+        "path": "a",
+        "metadata": {
+          "__proto__": {}
+        }
+      },
+      "valid": false
+    }
+  ]
+}
